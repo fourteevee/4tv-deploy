@@ -1,0 +1,163 @@
+###############################################################################
+# This is an unused file. It is here for your reference when creating configs.
+# Each uncommented line is a valid config option. The values are just examples.
+# The comment to the right of each line is the type of the value.
+# The comment below each line is the description of the option.
+
+id = "Example" # str
+# This is the id of the image. It is used to identify the image in any way that
+# the user might need to. It is also used to name the final image file.
+# This line will be ignored in the __global__.toml config file.
+
+[locale] # table
+# This table contains all of the locale options.
+hostname = "Example" # str
+# This will set the hostname of the image. If this is not set, the id will be
+# used as the hostname.
+timezone = "America/New_York" # str
+# This needs to be in format "Region/City" and will set the timezone of the
+# image.
+
+[networking] # table
+# This table contains all of the networking options.
+networks = ["Example Network Config 1.toml", "Example 2"] # array of str
+# Each item is the name of a network configuration toml file in the networks
+# directory, with or without the .toml extension. All of the network configs
+# will be used to configure the image.
+default_network = "Example 2" # str
+# This is the name of the network configuration to use as the default network.
+# This is the network that will be used for the first boot of the image, and
+# will be the network that the image will try to connect to if it loses its
+# connection. If this is not set, the first network in the networks array will
+# be used.
+delay_boot_for_network = true # bool
+# This will delay the boot of the image until a network connection is made.
+# This is useful if you want to use the image on a network that requires a
+# login, or if you want to use the image on a network that requires a login.
+
+[video] # table
+# This table contains all of the video options for the image.
+resolution = [1920, 1080, 60] # array of int
+# This will attempt to set the display resolution. The first item is the width,
+# the second is the height, and the third is the refresh rate.
+underscan = false # bool
+# This will set the display to use underscan. This is useful if you are using
+# a display that has a border around the screen like a CRT monitor.
+pixel_doubling = false # bool
+# This will set the display to use pixel doubling.
+composite = false # bool
+# This will set the display to use composite video. This is useful if you are
+# using a display that uses composite video, or otherwise cannot use HDMI.
+# If this is enabled for use with a pi that does not have composite video,
+# then the image will not boot so this option should be used with caution!
+screen_blanking = false # bool
+# This will enable screen blanking.
+
+[interfaces] # table
+# This table contains all of the options for the interfaces on the image.
+ssh = true # bool
+# This will enable or disable ssh on the image.
+vnc = true # bool
+# This will enable or disable vnc on the image.
+serial = true # bool
+# This will enable or disable serial on the image.
+
+[hardware] # table
+# This table contains all of the hardware options for the image.
+camera = true # bool
+# This will enable or disable the camera port on the image, if the pi has one.
+spi = true # bool
+# This will enable or disable the spi interface on the image.
+one_wire = true # bool
+# This will enable or disable the one wire port on the image.
+remote_gpio = false # bool
+# This will enable or disable the use of remote gpio on the image.
+# It is recommended that you do not enable this unless you know what you are
+# doing, because it can be dangerous to allow remote users access to the gpio
+# pins.
+
+[performance] # table
+# This table contains all of the performance options for the image.
+cpu_clock = 1000 # int
+# This will set the cpu clock speed in MHz. This is useful if you want to
+# overclock the pi. While this option is available, it is not recommended that
+# you use it with anything other than extremely conservative overclocking, as
+# every pi is different and overclocking can cause instability.
+gpu_memory = 128 # int
+# This will set the gpu memory in MB. This is useful if you want to increase
+# the gpu memory for use with the gpu, or if you want to decrease the gpu
+# memory to save memory for other uses. Obviously, this option can also be very
+# dangerous if you do not know what you are doing, as it can cause the pi to
+# attempt to boot with insufficient gpu or main memory depending on the value
+# you set.
+
+
+[packages] # table
+# This table contains all of the package options for the image. Packages are
+# installed after first boot. First, repos are added, then packages are
+# installed from the repos, then deb files are installed from the offline
+# packages.
+repos = ["https://example.com/repo", "https://test.com/repo2"] # array of str
+# Each item is a url to a repo to add to the image. This is useful if you want
+# to install packages from a repo that is not in the default repos.
+apt_packages = ["package1", "package2"] # array of str
+# Each item is a package to install using apt. Ensure that the package is
+# available in the repos you have added, or from the default repos!
+deb_packages = ["package1.deb", "package2"] # array of str
+# Each item is a deb file to install to the image using dpkg. These deb files
+# must be located in the "Data/Debian Packages" directory.
+services = ["service1", "service2.service"] # array of str
+# Each item is a service to include in the image. These services must be
+# located in the "Data/Services" directory. If you want to enable a service
+# that exists on the default image, you can include it here and it will be
+# enabled on first boot assuming there are no equivalently named services in
+# the "Data/Services" directory.
+
+[misc] # table
+# This table contains all of the miscellaneous options for the image that do
+# not fit into any other category.
+disable_default_user = true # bool
+# Disables the built-in "pi" user. If you set this to true, you must create
+# your own user to use!
+users = ["Example User Config 1.toml", "Example 2"] # array of str
+# Each item is the name of a user configuration toml file in the users
+# directory, with or without the .toml extension. All of the user configs will
+# be used to configure the image. If you set disable_default_user to true, you
+# must include at least one user config here!
+groups = ["Example Group Config 1.toml", "Example 2"] # array of str
+# Each item is the name of a group configuration toml file in the groups
+# directory, with or without the .toml extension.
+splash_screen_enabled = true # bool
+# Enables or disables the splash screen shown on boot. That would be the
+# rainbow square thing.
+power_led_options = "" # unknown TODO
+# TODO: figure out what these options are
+
+
+[files] # table
+# This table contains all of the options for the files on the image.
+# In order, this is how the options are applied to the image:
+# 1. Static files are copied to the image.
+# 2. Dynamic files are copied to the image.
+# 3. File deletions are applied to the image.
+static_files = {"file1.txt" = "/home/pi/file1.txt", "scripts/file2.txt" = "/home/pi/file2.txt"} # table of str
+# Key is the name of a file in the "Static Files" directory, value is the path
+# to place the file at on the image. If the file in the "Static Files"
+# directory is contained in a subdirectory, then the key should be the path to
+# the file relative to the "Static Files" directory. Extensions are required.
+# If the destination path exists, then the file will be overwritten.
+dynamic_files = {"file1.txt" = ["/home/pi/file1.txt", "template.toml"], "scripts/file2.txt" = ["/home/pi/file2.txt", "template2.toml"]} # table of array of str
+# Key is the name of a file in the "Dynamic Files" directory, value is an array
+# containing the path to place the file at on the image, and the name of a file
+# in the "Templates" directory. The file in the "Dynamic Files" directory will
+# be copied to the destination path, and then the file in the "Templates"
+# directory will be used to replace the variables in the file. If the file in
+# the "Dynamic Files" directory is contained in a subdirectory, then the key
+# should be the path to the file relative to the "Dynamic Files" directory.
+# Extensions are required. If the destination path exists, then the file will
+# be overwritten.
+file_deletions = ["/home/pi/file1.txt", "/home/pi/file2.txt"] # array of str
+# Each item is a path to a file to delete from the image. If the file does not
+# exist, then it will be ignored. If the file is a directory, then the entire
+# directory will be deleted.
+

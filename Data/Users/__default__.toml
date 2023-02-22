@@ -1,0 +1,68 @@
+# This file is ignored when creating the images! It is just an example
+# Comments to the right of a line indicate the default value type
+# Comments below a line indicate the useradd command line option that
+# the value is used for, along with any other information that may be
+# useful.
+#
+# Unconfiguable options:
+# -b --base-dir
+# -D --defaults
+# -k --skel
+# -K --key
+# -M
+# -o --non-unique
+# -U --user-group
+# -Z --selinux-user
+
+name = "user" # str
+# Primary parameter
+# Note: This is the username, and should match the name of the config file.
+
+uid = 1000 # int
+# -u --uid
+
+password = "password" # str
+# -p --password
+# Note: This is the encrypted password, not the plaintext password.
+
+disable_system_default_group = false # bool
+# -N --no-user-group
+
+default_group = "users" # str
+# -g --gid
+# Note: While adduser can use either a group name or a group ID, this program
+# only accepts a group name.
+# This group will only be set if disable_default_group is set to true.
+
+additonal_groups = ["admins", "dialout"] # array of str
+# -G --groups
+# Note: This has the same limitation as the gid option above.
+
+home = "/home/user" # str
+# -d --home
+
+create_home = true # bool
+# -m --create-home
+
+shell = "/bin/bash" # str
+# -s --shell
+
+comment = "User" # str
+# -c --comment
+# Note: If this user is for a human, it is recommended to use the user's
+# full name for this value. If this user is for a service, it is
+# recommended to use the service's name or description.
+
+expire_date = "2009-04-13" # str
+# -e --expiredate
+# Format: YYYY-MM-DD
+
+inactive = 0 # int
+# -f --inactive
+
+no_log_init = false # bool
+# -l --no-log-init
+
+is_system = false # bool
+# -r --system
+

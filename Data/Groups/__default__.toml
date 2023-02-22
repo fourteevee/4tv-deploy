@@ -1,0 +1,16 @@
+# This file is ignored when creating the images! It is just an example
+# Comments to the right of a line indicate the default value type
+# Comments below a line indicate the groupadd command line option that
+# the value is used for, along with any other information that may be
+# useful.
+
+name = "group" # str
+# Primary parameter
+
+gid = 1000 # int
+# -g, --gid
+# The group ID for the group. If not specified, the next available
+# group ID will be used.
+
+is_system = true # bool
+# -r, --system

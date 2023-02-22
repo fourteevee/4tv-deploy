@@ -1,0 +1,22 @@
+# This file is ignored when creating the images! It is just an example
+# Keys are the name of the variable to replace,
+# values are the values to replace the variable with.
+# The variables are replaced in the order they are defined in this file.
+# When preparing a file for use with a template, a variable is defined
+# by surrounding the variable name with three sets of curly braces.
+# For example, the variable "variable_1" is defined as "{{{variable_1}}}".
+# Yes, I know that is a lot of curly braces, but I wanted to make sure
+# that the variable name would not be likely to be confused with a normal
+# string in the file.
+
+# The following special values are available:
+# $DATE: The current date in the format TODO
+# $TIME: The current time in the format TODO
+# $DATETIME: The current date and time in the format TODO
+# $HOSTNAME: The hostname of the machine the script is running on
+# TOOD: Add more special values
+
+variable_1 = "Hello, world!"
+variable_2 = "This is a test"
+date = "$DATE"
+time = "$TIME"
